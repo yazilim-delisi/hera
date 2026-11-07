@@ -1,1 +1,1371 @@
-1
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HERA House of Wedding | Brautmode & Abendmode Wien</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cormorant Garamond & Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            noir: '#080706',
+            onyx: '#141312',
+            charcoal: '#22201D',
+            gold: {
+              300: '#F1D9A7',
+              400: '#D4AF37',
+              500: '#C5A059',
+              600: '#A17D36',
+              glow: 'rgba(212, 175, 55, 0.25)'
+            },
+            champagne: '#F6EEE3',
+            ivory: '#FAF8F5',
+            silk: '#EFE8DE'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Montserrat"', 'sans-serif'],
+          },
+          letterSpacing: {
+            'luxury': '0.32em',
+            'ultra': '0.45em',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #080706;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #D4AF37, #A17D36);
+      border-radius: 4px;
+    }
+
+    /* Metallic Foil Shimmer */
+    .gold-foil-text {
+      background: linear-gradient(135deg, #FFF0D0 0%, #D4AF37 40%, #FFF8E7 55%, #A88334 85%, #E5C378 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shineGold 8s ease infinite;
+    }
+    @keyframes shineGold {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .luxury-border {
+      position: relative;
+    }
+    .luxury-border::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      pointer-events: none;
+      transition: all 0.5s ease;
+    }
+    .luxury-border:hover::after {
+      border-color: rgba(212, 175, 55, 0.95);
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+    }
+
+    /* Video Exit */
+    .intro-exit {
+      opacity: 0;
+      transform: scale(1.05);
+      pointer-events: none;
+      transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1), transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-dark {
+      background: rgba(10, 9, 8, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .glass-light {
+      background: rgba(250, 248, 245, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .lang-btn.active {
+      background-color: #D4AF37;
+      color: #080706;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="bg-ivory text-onyx font-sans antialiased selection:bg-gold-500 selection:text-noir overflow-x-hidden">
+
+  <!-- ==============================================
+       1. MINIMAL CINEMATIC INTRO SCREEN
+       Only video + dual language buttons (DE / TR)
+       ============================================== -->
+  <div id="intro-screen" class="fixed inset-0 z-[100] bg-noir flex flex-col justify-end items-center transition-all duration-1000 overflow-hidden pb-14 sm:pb-20">
+    
+    <!-- Background Video -->
+    <div class="absolute inset-0 w-full h-full z-0 flex items-center justify-center pointer-events-none">
+      <video id="intro-video" 
+             autoplay 
+             muted 
+             playsinline 
+             loop 
+             class="w-full h-full object-cover filter brightness-[0.85] contrast-[1.05]">
+        <source src="https://raw.githubusercontent.com/yazilim-delisi/hera/50985e8c7ec9b1db4c4d2ca3b2d451e90a9a5b6a/gemini_generated_video_4704f417.mp4" type="video/mp4">
+      </video>
+      <div class="absolute inset-0 bg-gradient-to-t from-noir/90 via-noir/25 to-noir/40"></div>
+    </div>
+
+    <!-- Minimalist Clean Entry Controls -->
+    <div class="relative z-20 text-center px-6 flex flex-col items-center max-w-lg">
+      <div class="flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto">
+        
+        <button onclick="skipIntro('de')" class="group w-full sm:w-auto px-9 py-4 rounded-full border border-gold-400/80 bg-noir/70 text-white hover:bg-gold-500 hover:text-noir transition-all duration-500 backdrop-blur-md shadow-2xl flex items-center justify-center gap-3">
+          <span class="text-xs tracking-luxury uppercase font-semibold">ZUR WEBSITE</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+        </button>
+
+        <button onclick="skipIntro('tr')" class="group w-full sm:w-auto px-9 py-4 rounded-full border border-gold-400/80 bg-noir/70 text-white hover:bg-gold-500 hover:text-noir transition-all duration-500 backdrop-blur-md shadow-2xl flex items-center justify-center gap-3">
+          <span class="text-xs tracking-luxury uppercase font-semibold">SİTEYE GİRİŞ</span>
+          <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+        </button>
+      </div>
+
+      <p class="text-[10px] uppercase tracking-ultra text-white/50 mt-4 font-light">
+        HERA HOUSE OF WEDDING • WIEN
+      </p>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       2. TOP ANNOUNCEMENT BAR
+       ============================================== -->
+  <div class="bg-noir text-white text-[11px] tracking-luxury py-2.5 px-4 border-b border-gold-500/20 flex justify-between items-center z-40 relative">
+    <div class="hidden md:flex items-center gap-3">
+      <span class="w-1.5 h-1.5 rounded-full bg-gold-400"></span>
+      <span class="text-white/80 font-light" data-i18n="top_bar">SENEFELDERGASSE 28/2, 1100 WIEN</span>
+    </div>
+    
+    <div class="mx-auto md:mx-0 text-center font-serif italic text-xs text-gold-300" data-i18n="slogan_short">
+      "Einzigartige Designs für Ihren ganz besonderen Moment"
+    </div>
+
+    <div class="hidden lg:flex items-center gap-6 text-[10px] uppercase font-light tracking-widest text-white/70">
+      <a href="tel:06602335600" class="hover:text-gold-300 transition flex items-center gap-1.5">
+        <i data-lucide="phone" class="w-3 h-3 text-gold-400"></i> 0660 2335600
+      </a>
+      <span>|</span>
+      <span data-i18n="hours_short">MO – SA 10:00 – 18:00</span>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       3. NAVIGATION (TR / DE / EN)
+       ============================================== -->
+  <header id="main-nav" class="sticky top-0 left-0 right-0 z-40 glass-light border-b border-gold-500/20 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-24 flex items-center justify-between">
+      
+      <!-- Left: Navigation Links -->
+      <nav class="hidden lg:flex items-center space-x-7 text-[11px] tracking-luxury uppercase font-medium text-onyx">
+        <a href="#kollektionen" class="hover:text-gold-500 transition-colors" data-i18n="nav_collections">Kollektionen</a>
+        <a href="#salon" class="hover:text-gold-500 transition-colors" data-i18n="nav_salon">Der Salon</a>
+        <a href="#bereiche" class="hover:text-gold-500 transition-colors" data-i18n="nav_areas">Deneme Alanları</a>
+        <a href="#anfahrt" class="hover:text-gold-500 transition-colors" data-i18n="nav_route">Route & Standort</a>
+      </nav>
+
+      <!-- Center: Brand Logo -->
+      <a href="#" class="flex flex-col items-center group text-center py-2">
+        <span class="font-serif text-3xl sm:text-4xl tracking-[0.28em] text-noir uppercase font-normal group-hover:text-gold-600 transition-colors duration-300">
+          HERA
+        </span>
+        <span class="text-[9px] tracking-ultra text-gold-500 uppercase -mt-0.5 font-semibold">
+          House of Wedding
+        </span>
+      </a>
+
+      <!-- Right: ROUTE, Instagram, Language Switcher (TR / DE / EN) & Ziyaret Bilgisi -->
+      <div class="flex items-center space-x-2 sm:space-x-3">
+        
+        <!-- Language Switcher -->
+        <div class="flex items-center bg-noir/5 p-1 rounded-full border border-gold-500/30 text-[10px] uppercase tracking-wider font-semibold">
+          <button onclick="setLanguage('de')" id="lang-btn-de" class="lang-btn px-2.5 py-1 rounded-full text-onyx hover:text-gold-600 transition">DE</button>
+          <button onclick="setLanguage('tr')" id="lang-btn-tr" class="lang-btn px-2.5 py-1 rounded-full text-onyx hover:text-gold-600 transition">TR</button>
+          <button onclick="setLanguage('en')" id="lang-btn-en" class="lang-btn px-2.5 py-1 rounded-full text-onyx hover:text-gold-600 transition">EN</button>
+        </div>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/herahouseofwedding?igsh=ODA1NTc5OTg5Nw%3D%3D" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           aria-label="Instagram Hera House of Wedding"
+           class="w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-gold-500/30 flex items-center justify-center text-onyx hover:bg-gold-500 hover:text-white transition duration-300">
+          <i data-lucide="instagram" class="w-4 h-4"></i>
+        </a>
+
+        <!-- Direct ROUTE Button -->
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Senefeldergasse+28%2F2,+1100+Wien" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="group relative inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full border border-gold-500 bg-white hover:bg-gold-500 transition-all duration-300 shadow-sm text-onyx hover:text-white">
+          <i data-lucide="navigation" class="w-3.5 h-3.5 text-gold-500 group-hover:text-white transition-colors"></i>
+          <span class="text-[10px] tracking-widest uppercase font-semibold" data-i18n="route_btn">ROUTE</span>
+        </a>
+
+        <!-- Visit Info Button -->
+        <a href="#anmeldung" class="hidden xl:inline-flex items-center px-5 py-2.5 rounded-full bg-noir text-gold-300 border border-gold-500/40 text-[10px] tracking-luxury uppercase font-medium hover:bg-gold-500 hover:text-noir transition-all duration-300 shadow-md" data-i18n="nav_visit">
+          Ziyaret Ön Bilgisi
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button onclick="toggleMobileNav()" class="lg:hidden p-2 text-noir focus:outline-none" aria-label="Menü">
+          <i data-lucide="menu" id="nav-burger-icon" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-nav-panel" class="hidden lg:hidden glass-dark text-white border-b border-gold-500/30 px-6 py-8 space-y-5 text-center">
+      <div class="flex justify-center gap-2 pb-4 border-b border-white/10">
+        <button onclick="setLanguage('de')" class="px-4 py-1.5 rounded-full border border-gold-500/40 text-xs font-semibold">DEUTSCH</button>
+        <button onclick="setLanguage('tr')" class="px-4 py-1.5 rounded-full border border-gold-500/40 text-xs font-semibold">TÜRKÇE</button>
+        <button onclick="setLanguage('en')" class="px-4 py-1.5 rounded-full border border-gold-500/40 text-xs font-semibold">ENGLISH</button>
+      </div>
+
+      <a href="#kollektionen" onclick="toggleMobileNav()" class="block text-xs uppercase tracking-luxury py-2 hover:text-gold-400" data-i18n="nav_collections">Kollektionen</a>
+      <a href="#salon" onclick="toggleMobileNav()" class="block text-xs uppercase tracking-luxury py-2 hover:text-gold-400" data-i18n="nav_salon">Der Salon</a>
+      <a href="#bereiche" onclick="toggleMobileNav()" class="block text-xs uppercase tracking-luxury py-2 hover:text-gold-400" data-i18n="nav_areas">Deneme Alanları</a>
+      <a href="#anfahrt" onclick="toggleMobileNav()" class="block text-xs uppercase tracking-luxury py-2 hover:text-gold-400" data-i18n="nav_route">Route & Standort</a>
+      <a href="#anmeldung" onclick="toggleMobileNav()" class="block text-xs uppercase tracking-luxury py-2 text-gold-400 font-semibold" data-i18n="nav_visit">Ziyaret Ön Bilgisi Verin</a>
+      <button onclick="toggleMobileNav(); openImpressumModal()" class="block w-full text-xs uppercase tracking-luxury py-2 text-white/60">Impressum</button>
+      
+      <div class="pt-4 border-t border-white/10 flex flex-col gap-3 items-center">
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Senefeldergasse+28%2F2,+1100+Wien" target="_blank" rel="noopener noreferrer" class="w-full py-3 rounded-full bg-gold-500 text-noir text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-2">
+          <i data-lucide="navigation" class="w-4 h-4"></i> <span data-i18n="route_btn">ROUTE</span> (Senefeldergasse 28/2)
+        </a>
+        <a href="tel:06602335600" class="text-xs text-gold-300 tracking-wider">
+          <i data-lucide="phone" class="w-3.5 h-3.5 inline mr-1"></i> 0660 2335600
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==============================================
+       4. HERO SECTION
+       ============================================== -->
+  <section class="relative min-h-[85vh] flex items-center justify-center py-20 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-[#FAF8F5] via-[#F6EEE3] to-[#FAF8F5]">
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.035] overflow-hidden">
+      <span class="font-serif text-[38vw] font-bold leading-none uppercase text-noir">HERA</span>
+    </div>
+
+    <div class="max-w-5xl mx-auto text-center relative z-10">
+      <div class="inline-flex items-center gap-3 px-6 py-2 rounded-full border border-gold-500/40 bg-white/80 backdrop-blur-md text-[10px] sm:text-[11px] tracking-ultra uppercase text-gold-600 font-semibold mb-8 shadow-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold-500"></span>
+        <span data-i18n="hero_badge">BRIDAL COUTURE • WIEN</span>
+      </div>
+
+      <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-noir font-normal tracking-wide leading-[1.08] mb-6">
+        <span data-i18n="hero_title_1">Die Kunst der</span> <br>
+        <span class="italic font-light gold-foil-text" data-i18n="hero_title_2">Vollendeten Brautmode</span>
+      </h1>
+
+      <p class="max-w-3xl mx-auto font-serif italic text-base sm:text-xl md:text-2xl text-charcoal/85 leading-relaxed font-light mb-10" data-i18n="hero_slogan">
+        "BRIDAL COUTURE: Maßgeschneiderte und Ready-to-Wear Brautmode für Standesamt, Verlobung, Henna und Abendmode. Einzigartige Designs für besonderen Momente."
+      </p>
+
+      <!-- Primary Action Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5">
+        <a href="#anmeldung" class="w-full sm:w-auto px-9 py-4 rounded-full bg-noir text-gold-300 text-[11px] uppercase tracking-luxury font-medium hover:bg-gold-500 hover:text-noir transition-all duration-500 shadow-xl hover:shadow-gold-500/30" data-i18n="hero_btn_visit">
+          Ziyaret Öncesi Bilgi Verin
+        </a>
+        
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Senefeldergasse+28%2F2,+1100+Wien" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-full border border-gold-500 bg-white text-onyx hover:bg-gold-500 hover:text-white transition-all duration-300 text-[11px] uppercase tracking-luxury font-semibold flex items-center justify-center gap-2.5 shadow-sm">
+          <i data-lucide="navigation" class="w-4 h-4 text-gold-500 group-hover:text-white"></i> <span data-i18n="hero_btn_route">ROUTE (Google Maps)</span>
+        </a>
+        
+        <a href="#kollektionen" class="w-full sm:w-auto px-7 py-4 rounded-full border border-noir/20 text-onyx hover:border-gold-500 hover:text-gold-600 transition duration-300 text-[11px] uppercase tracking-luxury" data-i18n="hero_btn_explore">
+          Kollektionen Ansehen
+        </a>
+      </div>
+
+      <!-- Address Strip -->
+      <div class="mt-14 pt-8 border-t border-gold-500/20 max-w-xl mx-auto flex flex-wrap items-center justify-center gap-6 text-[11px] tracking-widest uppercase text-charcoal/80">
+        <span class="flex items-center gap-2">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold-500"></i> Senefeldergasse 28/2, 1100 Wien
+        </span>
+        <span class="flex items-center gap-2">
+          <i data-lucide="clock" class="w-3.5 h-3.5 text-gold-500"></i> <span data-i18n="hours_short">Mo – Sa: 10:00 – 18:00</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       5. DER SALON & GENİŞ DENEME ALANLARI
+       ============================================== -->
+  <section id="salon" class="py-28 bg-white border-y border-gold-500/20 relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+        
+        <div class="lg:col-span-6 relative">
+          <div class="relative z-10 luxury-border rounded-2xl overflow-hidden shadow-2xl">
+            <img src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=1200&q=85" 
+                 alt="HERA House of Wedding Salon Wien" 
+                 class="w-full h-[580px] object-cover filter brightness-[0.97] hover:scale-105 transition-transform duration-700">
+          </div>
+          <div class="hidden sm:block absolute -bottom-10 -right-8 w-64 h-72 rounded-xl overflow-hidden shadow-2xl border-4 border-white z-20">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" 
+                 alt="Brautmode Deneme Wien" 
+                 class="w-full h-full object-cover">
+          </div>
+          <div class="absolute top-8 left-8 bg-noir/90 backdrop-blur-md text-white px-5 py-3 rounded-full z-20 border border-gold-500/40">
+            <p class="text-[9px] uppercase tracking-ultra text-gold-400">HERA SALON WIEN</p>
+            <p class="font-serif text-sm">Senefeldergasse 28/2</p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 space-y-8">
+          <div class="space-y-3">
+            <span class="text-gold-500 uppercase text-[11px] tracking-ultra font-semibold" data-i18n="salon_tag">HERA HOUSE OF WEDDING • WIEN</span>
+            <h2 class="font-serif text-3xl sm:text-5xl text-noir leading-[1.15] font-normal" data-i18n="salon_title">
+              Geniş ve Ferah Deneme Alanları
+            </h2>
+          </div>
+
+          <p class="text-charcoal/80 text-sm sm:text-base leading-relaxed font-light" data-i18n="salon_desc">
+            Viyana Senefeldergasse 28/2 adresindeki salonumuzda, gelin adaylarımızın elbiseleri rahatça deneyebilmeleri ve detayları huzurla inceleyebilmeleri için özel olarak tasarlanmış geniş ve ferah deneme alanlarımız bulunmaktadır. Nikah, nişan, kına ve düğün modellerimizi yakından görüp üzerinizde deneyebilirsiniz.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+            <div class="p-5 rounded-2xl bg-ivory border border-gold-500/20">
+              <span class="font-serif text-2xl text-gold-600 block mb-1" data-i18n="salon_feature_1_title">01. Ferah Alanlar</span>
+              <p class="text-xs text-charcoal/70 font-light" data-i18n="salon_feature_1_desc">Aileniz ve sevdiklerinizle birlikte elbiseleri rahatça deneyebileceğiniz geniş salon konforu.</p>
+            </div>
+            <div class="p-5 rounded-2xl bg-ivory border border-gold-500/20">
+              <span class="font-serif text-2xl text-gold-600 block mb-1" data-i18n="salon_feature_2_title">02. Zengin Çeşitler</span>
+              <p class="text-xs text-charcoal/70 font-light" data-i18n="salon_feature_2_desc">Gelinlik, nikah, nişan, kına ve abiyede hazır giyim seçkin tasarımlar.</p>
+            </div>
+          </div>
+
+          <div class="pt-4 flex items-center gap-6">
+            <a href="#anmeldung" class="px-8 py-3.5 rounded-full bg-noir text-gold-300 text-[11px] uppercase tracking-luxury hover:bg-gold-500 hover:text-noir transition duration-300" data-i18n="hero_btn_visit">
+              Ön Bilgi Bildirimi
+            </a>
+            <a href="tel:06602335600" class="text-xs tracking-wider uppercase font-semibold text-noir hover:text-gold-600 transition flex items-center gap-2">
+              <i data-lucide="phone-call" class="w-4 h-4 text-gold-500"></i> 0660 2335600
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       6. INTERACTIVE LOOKBOOK
+       ============================================== -->
+  <section id="kollektionen" class="py-28 max-w-7xl mx-auto px-6 sm:px-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      <div>
+        <span class="text-gold-500 uppercase text-[11px] tracking-ultra font-semibold" data-i18n="lookbook_tag">LE LOOKBOOK</span>
+        <h2 class="font-serif text-3xl sm:text-5xl text-noir mt-2" data-i18n="lookbook_title">Die Couture Kollektionen</h2>
+        <p class="text-xs sm:text-sm text-charcoal/70 font-light mt-2 max-w-lg" data-i18n="lookbook_desc">
+          Standesamt, Verlobung, Henna, Brautmode und Abendmode: Entdecken Sie unsere vielseitigen Modelle im Salon.
+        </p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex flex-wrap gap-2 text-[10px] uppercase tracking-luxury font-medium" id="filter-buttons">
+        <button onclick="filterGallery('all', this)" class="filter-btn active px-4 py-2 rounded-full border border-gold-500 bg-noir text-gold-300 transition" data-i18n="tab_all">Alle</button>
+        <button onclick="filterGallery('braut', this)" class="filter-btn px-4 py-2 rounded-full border border-gold-500/30 text-onyx hover:border-gold-500 transition" data-i18n="tab_bridal">Brautkleider</button>
+        <button onclick="filterGallery('standesamt', this)" class="filter-btn px-4 py-2 rounded-full border border-gold-500/30 text-onyx hover:border-gold-500 transition" data-i18n="tab_civil">Standesamt</button>
+        <button onclick="filterGallery('verlobung', this)" class="filter-btn px-4 py-2 rounded-full border border-gold-500/30 text-onyx hover:border-gold-500 transition" data-i18n="tab_henna">Verlobung & Henna</button>
+        <button onclick="filterGallery('abendmode', this)" class="filter-btn px-4 py-2 rounded-full border border-gold-500/30 text-onyx hover:border-gold-500 transition" data-i18n="tab_evening">Abendmode</button>
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery-container">
+      
+      <!-- Card 1 -->
+      <div class="gallery-item group relative bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20" data-category="braut">
+        <div class="aspect-[3/4] overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=900&q=85" alt="Brautkleid Wien" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-noir/80 via-noir/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+            <span class="text-[10px] tracking-ultra uppercase text-gold-300">Brautmode</span>
+            <p class="font-serif text-2xl italic">L'Impératrice</p>
+            <p class="text-xs text-white/80 font-light mt-1" data-i18n="card_1_sub">Opulente Schleppe & französische Spitze</p>
+            <a href="#anmeldung" class="mt-4 inline-block text-xs uppercase tracking-luxury text-gold-300 underline underline-offset-4" data-i18n="card_ask">Denemeye Gelmeden Bilgi Ver →</a>
+          </div>
+        </div>
+        <div class="p-5 flex items-center justify-between">
+          <div>
+            <h3 class="font-serif text-lg text-noir font-normal" data-i18n="card_1_title">Brautkleid Kollektion</h3>
+            <span class="text-[10px] tracking-widest uppercase text-gold-600 font-medium">Ready-to-Wear</span>
+          </div>
+          <span class="text-xs font-serif italic text-charcoal/60">Hera Royal</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="gallery-item group relative bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20" data-category="standesamt">
+        <div class="aspect-[3/4] overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85" alt="Standesamt Kleid" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-noir/80 via-noir/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+            <span class="text-[10px] tracking-ultra uppercase text-gold-300">Standesamt & Civil</span>
+            <p class="font-serif text-2xl italic">Pure Élégance</p>
+            <p class="text-xs text-white/80 font-light mt-1" data-i18n="card_2_sub">Minimalistischer Seidensatin & Clean Chic</p>
+            <a href="#anmeldung" class="mt-4 inline-block text-xs uppercase tracking-luxury text-gold-300 underline underline-offset-4" data-i18n="card_ask">Denemeye Gelmeden Bilgi Ver →</a>
+          </div>
+        </div>
+        <div class="p-5 flex items-center justify-between">
+          <div>
+            <h3 class="font-serif text-lg text-noir font-normal" data-i18n="card_2_title">Standesamt Kollektion</h3>
+            <span class="text-[10px] tracking-widest uppercase text-gold-600 font-medium">Civil Wedding Chic</span>
+          </div>
+          <span class="text-xs font-serif italic text-charcoal/60">Civil Noblesse</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="gallery-item group relative bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20" data-category="verlobung">
+        <div class="aspect-[3/4] overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1546804784-896d0dca3805?auto=format&fit=crop&w=900&q=85" alt="Verlobung Henna" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-noir/80 via-noir/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+            <span class="text-[10px] tracking-ultra uppercase text-gold-300">Verlobung & Henna</span>
+            <p class="font-serif text-2xl italic">Reine Magie</p>
+            <p class="text-xs text-white/80 font-light mt-1" data-i18n="card_3_sub">Glanzvolle Farben & Perlenstickerei</p>
+            <a href="#anmeldung" class="mt-4 inline-block text-xs uppercase tracking-luxury text-gold-300 underline underline-offset-4" data-i18n="card_ask">Denemeye Gelmeden Bilgi Ver →</a>
+          </div>
+        </div>
+        <div class="p-5 flex items-center justify-between">
+          <div>
+            <h3 class="font-serif text-lg text-noir font-normal" data-i18n="card_3_title">Verlobung & Henna</h3>
+            <span class="text-[10px] tracking-widest uppercase text-gold-600 font-medium">Engagement & Kına</span>
+          </div>
+          <span class="text-xs font-serif italic text-charcoal/60">Royal Henna</span>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="gallery-item group relative bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20" data-category="abendmode">
+        <div class="aspect-[3/4] overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=900&q=85" alt="Abendmode" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-noir/80 via-noir/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+            <span class="text-[10px] tracking-ultra uppercase text-gold-300">Abendmode</span>
+            <p class="font-serif text-2xl italic">Soirée Étoilée</p>
+            <p class="text-xs text-white/80 font-light mt-1" data-i18n="card_4_sub">Gala- und Festtagskleider</p>
+            <a href="#anmeldung" class="mt-4 inline-block text-xs uppercase tracking-luxury text-gold-300 underline underline-offset-4" data-i18n="card_ask">Denemeye Gelmeden Bilgi Ver →</a>
+          </div>
+        </div>
+        <div class="p-5 flex items-center justify-between">
+          <div>
+            <h3 class="font-serif text-lg text-noir font-normal" data-i18n="card_4_title">Abendmode</h3>
+            <span class="text-[10px] tracking-widest uppercase text-gold-600 font-medium">Gala & Festmode</span>
+          </div>
+          <span class="text-xs font-serif italic text-charcoal/60">Soirée Elegance</span>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="gallery-item group relative bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20" data-category="braut">
+        <div class="aspect-[3/4] overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=85" alt="Sirene Balık Kesim" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-noir/80 via-noir/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+            <span class="text-[10px] tracking-ultra uppercase text-gold-300">Sirene & Balık Kesim</span>
+            <p class="font-serif text-2xl italic">Silhouette Sublime</p>
+            <p class="text-xs text-white/80 font-light mt-1" data-i18n="card_5_sub">Figurbetonte Eleganz</p>
+            <a href="#anmeldung" class="mt-4 inline-block text-xs uppercase tracking-luxury text-gold-300 underline underline-offset-4" data-i18n="card_ask">Denemeye Gelmeden Bilgi Ver →</a>
+          </div>
+        </div>
+        <div class="p-5 flex items-center justify-between">
+          <div>
+            <h3 class="font-serif text-lg text-noir font-normal" data-i18n="card_5_title">Sirene & Balık Kesim</h3>
+            <span class="text-[10px] tracking-widest uppercase text-gold-600 font-medium">Mermaid Silhouette</span>
+          </div>
+          <span class="text-xs font-serif italic text-charcoal/60">Classic Line</span>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="gallery-item group relative bg-white rounded-2xl overflow-hidden shadow-md border border-gold-500/20" data-category="braut">
+        <div class="aspect-[3/4] overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=900&q=85" alt="Prinzessin Ballkleid" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-noir/80 via-noir/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 text-white">
+            <span class="text-[10px] tracking-ultra uppercase text-gold-300">Prinzessin Ballkleid</span>
+            <p class="font-serif text-2xl italic">Königlicher Glanz</p>
+            <p class="text-xs text-white/80 font-light mt-1" data-i18n="card_6_sub">Voluminöser Tüll & Organza</p>
+            <a href="#anmeldung" class="mt-4 inline-block text-xs uppercase tracking-luxury text-gold-300 underline underline-offset-4" data-i18n="card_ask">Denemeye Gelmeden Bilgi Ver →</a>
+          </div>
+        </div>
+        <div class="p-5 flex items-center justify-between">
+          <div>
+            <h3 class="font-serif text-lg text-noir font-normal" data-i18n="card_6_title">Prinzessin Ballkleid</h3>
+            <span class="text-[10px] tracking-widest uppercase text-gold-600 font-medium">Royal Ballgown</span>
+          </div>
+          <span class="text-xs font-serif italic text-charcoal/60">Grand Princess</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==============================================
+       7. GENİŞ VE FERAH DENEME ALANLARI BÖLÜMÜ
+       ============================================== -->
+  <section id="bereiche" class="py-24 bg-noir text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 sm:px-12 relative z-10">
+      <div class="text-center max-w-2xl mx-auto mb-20">
+        <span class="text-gold-400 uppercase text-[11px] tracking-ultra font-semibold" data-i18n="areas_tag">SALON AMBIENTE</span>
+        <h2 class="font-serif text-3xl sm:text-5xl text-white mt-2 font-normal" data-i18n="areas_title">Geniş ve Ferah Deneme Alanları</h2>
+        <div class="w-20 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mt-5"></div>
+        <p class="text-xs sm:text-sm text-white/70 font-light mt-4" data-i18n="areas_desc">
+          Salonumuzda gelin adaylarımızın elbiseleri en rahat şekilde denemeleri için geniş ve ferah alanlar oluşturduk.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-8 rounded-3xl bg-onyx/80 border border-gold-500/20 backdrop-blur-sm relative group hover:border-gold-500/60 transition duration-500">
+          <div class="w-12 h-12 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6 group-hover:scale-110 transition-transform">
+            <i data-lucide="maximize" class="w-6 h-6"></i>
+          </div>
+          <span class="text-[10px] uppercase tracking-ultra text-gold-400 block mb-2" data-i18n="areas_card_1_tag">Konfor</span>
+          <h3 class="font-serif text-2xl text-white mb-3" data-i18n="areas_card_1_title">Geniş Deneme Alanları</h3>
+          <p class="text-xs text-white/70 leading-relaxed font-light" data-i18n="areas_card_1_desc">
+            Büyük aynalar ve geniş hareket alanına sahip ferah salonumuzda gelinlik ve abiyeleri rahatça üzerinizde görebilirsiniz.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-onyx/80 border border-gold-500/20 backdrop-blur-sm relative group hover:border-gold-500/60 transition duration-500">
+          <div class="w-12 h-12 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6 group-hover:scale-110 transition-transform">
+            <i data-lucide="layers" class="w-6 h-6"></i>
+          </div>
+          <span class="text-[10px] uppercase tracking-ultra text-gold-400 block mb-2" data-i18n="areas_card_2_tag">Çeşitlilik</span>
+          <h3 class="font-serif text-2xl text-white mb-3" data-i18n="areas_card_2_title">Hazır Koleksiyonlar</h3>
+          <p class="text-xs text-white/70 leading-relaxed font-light" data-i18n="areas_card_2_desc">
+            Standesamt, kına, nişan ve düğün modellerimizi salonumuzda yakından inceleyip dilediğiniz modelleri deneyebilirsiniz.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-onyx/80 border border-gold-500/20 backdrop-blur-sm relative group hover:border-gold-500/60 transition duration-500">
+          <div class="w-12 h-12 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 mb-6 group-hover:scale-110 transition-transform">
+            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+          </div>
+          <span class="text-[10px] uppercase tracking-ultra text-gold-400 block mb-2" data-i18n="areas_card_3_tag">Misafirperverlik</span>
+          <h3 class="font-serif text-2xl text-white mb-3" data-i18n="areas_card_3_title">Güler Yüzlü Hizmet</h3>
+          <p class="text-xs text-white/70 leading-relaxed font-light" data-i18n="areas_card_3_desc">
+            Aileniz veya arkadaşlarınızla birlikte keyifle vakit geçirebileceğiniz samimi ve huzurlu bir ortam sizleri bekliyor.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       8. ROUTE & STANDORT (DÜZELTİLMİŞ METİN)
+       ============================================== -->
+  <section id="anfahrt" class="py-28 bg-ivory border-y border-gold-500/20 relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-gold-500 uppercase text-[11px] tracking-ultra font-semibold" data-i18n="route_sec_tag">SALON & ROUTENPLANER</span>
+          <h2 class="font-serif text-3xl sm:text-5xl text-noir leading-[1.15] font-normal" data-i18n="route_sec_title">
+            Ihr Weg zu Hera House of Wedding
+          </h2>
+          
+          <!-- Birebir İstenen Metin -->
+          <p class="text-charcoal/80 text-sm font-light leading-relaxed" data-i18n="route_sec_desc">
+            Salonumuz Viyana 10. bölgede (Senefeldergasse 28/2) merkezi bir konumdadır. Arabayla veya toplu taşımayla kolayca ulaşmak için sizlere konumumuzu paylaşıyoruz.
+          </p>
+
+          <!-- Address Card -->
+          <div class="p-6 rounded-2xl bg-white border border-gold-500/30 shadow-md space-y-3">
+            <div class="flex items-start gap-3">
+              <i data-lucide="map-pin" class="w-5 h-5 text-gold-500 flex-shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="text-sm text-noir block font-medium">Hera House of Wedding</strong>
+                <p class="text-xs text-charcoal/80">Senefeldergasse 28/2</p>
+                <p class="text-xs text-charcoal/80">1100 Wien, Österreich</p>
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-gold-500/10 flex items-center justify-between text-xs">
+              <span class="text-charcoal/70" data-i18n="label_phone">Telefon:</span>
+              <a href="tel:06602335600" class="font-semibold text-gold-600 hover:underline">0660 2335600</a>
+            </div>
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-charcoal/70">Instagram:</span>
+              <a href="https://www.instagram.com/herahouseofwedding?igsh=ODA1NTc5OTg5Nw%3D%3D" target="_blank" rel="noopener noreferrer" class="font-semibold text-gold-600 hover:underline">@herahouseofwedding</a>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-2 flex flex-col sm:flex-row gap-3">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Senefeldergasse+28%2F2,+1100+Wien" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="px-8 py-4 rounded-full bg-gold-500 hover:bg-gold-600 text-noir text-xs tracking-luxury uppercase font-bold transition shadow-xl flex items-center justify-center gap-2.5">
+              <i data-lucide="navigation" class="w-4 h-4"></i> <span data-i18n="btn_maps_full">ROUTE (GOOGLE MAPS)</span>
+            </a>
+
+            <a href="https://wa.me/436602335600" target="_blank" rel="noopener noreferrer" class="px-6 py-4 rounded-full border border-gold-500/40 bg-white hover:bg-emerald-600 hover:text-white hover:border-emerald-600 text-onyx text-xs tracking-wider uppercase font-semibold transition flex items-center justify-center gap-2">
+              <i data-lucide="message-circle" class="w-4 h-4 text-emerald-600"></i> WhatsApp
+            </a>
+          </div>
+
+          <!-- Opening Hours Table -->
+          <div class="bg-white p-5 rounded-2xl border border-gold-500/20 text-xs">
+            <span class="text-gold-600 font-semibold block mb-3 uppercase tracking-wider text-[10px]" data-i18n="hours_title">Öffnungszeiten</span>
+            <div class="space-y-1.5 text-charcoal/80">
+              <div class="flex justify-between py-1 border-b border-ivory"><span data-i18n="day_mon">Montag</span><span class="font-medium text-noir">10:00 – 18:00</span></div>
+              <div class="flex justify-between py-1 border-b border-ivory"><span data-i18n="day_tue">Dienstag</span><span class="font-medium text-noir">10:00 – 18:00</span></div>
+              <div class="flex justify-between py-1 border-b border-ivory"><span data-i18n="day_wed">Mittwoch</span><span class="font-medium text-noir">10:00 – 18:00</span></div>
+              <div class="flex justify-between py-1 border-b border-ivory"><span data-i18n="day_thu">Donnerstag</span><span class="font-medium text-noir">10:00 – 18:00</span></div>
+              <div class="flex justify-between py-1 border-b border-ivory"><span data-i18n="day_fri">Freitag</span><span class="font-medium text-noir">10:00 – 18:00</span></div>
+              <div class="flex justify-between py-1 border-b border-ivory"><span data-i18n="day_sat">Samstag</span><span class="font-medium text-noir">10:00 – 18:00</span></div>
+              <div class="flex justify-between py-1 text-rose-700"><span data-i18n="day_sun">Sonntag</span><span class="font-medium" data-i18n="val_closed">Geschlossen</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Maps Embed -->
+        <div class="lg:col-span-7">
+          <div class="luxury-border rounded-3xl overflow-hidden shadow-2xl bg-noir border border-gold-500/30 h-[520px] relative">
+            <iframe 
+              title="HERA House of Wedding Google Maps Senefeldergasse 28/2"
+              class="w-full h-full border-0"
+              src="https://maps.google.com/maps?q=Senefeldergasse%2028%2F2,%201100%20Wien&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Senefeldergasse+28%2F2,+1100+Wien" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="absolute bottom-5 left-5 right-5 sm:right-auto bg-noir/90 backdrop-blur-md text-white p-4 rounded-2xl border border-gold-500/50 flex items-center justify-between gap-4 shadow-xl hover:bg-gold-500 hover:text-noir transition group">
+              <div>
+                <p class="text-[9px] uppercase tracking-ultra text-gold-400 group-hover:text-noir font-bold">1100 WIEN</p>
+                <p class="font-serif text-base">Senefeldergasse 28/2</p>
+              </div>
+              <div class="w-9 h-9 rounded-full bg-gold-500 group-hover:bg-noir text-noir group-hover:text-gold-300 flex items-center justify-center">
+                <i data-lucide="navigation" class="w-4 h-4"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       9. GELMEDEN ÖNCE BİLGİ VERME & DENEME FORMU
+       ============================================== -->
+  <section id="anmeldung" class="py-28 max-w-4xl mx-auto px-6 sm:px-10">
+    <div class="bg-white rounded-3xl p-8 sm:p-14 md:p-16 shadow-2xl border border-gold-500/30 relative overflow-hidden">
+      <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-gold-300 via-gold-500 to-gold-600"></div>
+
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <span class="text-gold-500 uppercase text-[11px] tracking-ultra font-semibold" data-i18n="booking_tag">VORANMELDUNG / BİLGİLENDİRME</span>
+        <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-noir mt-2" data-i18n="booking_title">Ziyaret Ön Bilgilendirmesi</h2>
+        <p class="text-xs sm:text-sm text-charcoal/70 mt-3 font-light leading-relaxed" data-i18n="booking_desc">
+          Siz gelmeden önce kendimizi en iyi şekilde hazırlayabilmemiz için lütfen formu doldurunuz. Denemek istediğiniz modelleri ve geleceğiniz günü önden bilmemiz bize yardımcı olacaktır.
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-10">
+        <a href="tel:06602335600" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-ivory border border-gold-500/30 text-onyx hover:border-gold-500 text-xs tracking-wider uppercase font-medium transition">
+          <i data-lucide="phone" class="w-4 h-4 text-gold-500"></i> 0660 2335600
+        </a>
+        <a href="https://wa.me/436602335600" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#128C7E] hover:bg-[#075E54] text-white text-xs tracking-wider uppercase font-semibold transition">
+          <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+        </a>
+        <a href="https://www.instagram.com/herahouseofwedding?igsh=ODA1NTc5OTg5Nw%3D%3D" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-purple-700 via-pink-600 to-amber-500 text-white text-xs tracking-wider uppercase font-semibold transition">
+          <i data-lucide="instagram" class="w-4 h-4"></i> Instagram
+        </a>
+      </div>
+
+      <!-- Confirmation Toast -->
+      <div id="booking-confirmation" class="hidden mb-8 p-5 rounded-2xl bg-amber-50 border border-gold-500 text-onyx text-xs sm:text-sm flex items-start gap-4">
+        <div class="p-2 bg-gold-500 rounded-full text-noir mt-0.5">
+          <i data-lucide="check" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <strong class="block font-serif text-base text-noir mb-1" data-i18n="booking_success_title">Bilgileriniz Alındı!</strong>
+          <span data-i18n="booking_success_desc">Ziyaret ön bildiriminiz kaydedildi. Bilgiler başarıyla <strong>abiim66yapti@gmail.com</strong> adresine iletildi. Sizi salonumuzda ağırlamak için sabırsızlanıyoruz.</span>
+        </div>
+      </div>
+
+      <!-- Form (Ad, Tel, E-Posta, Gün, Kategori, Mesaj) -->
+      <form id="visit-form" onsubmit="submitVisitNotification(event)" class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-[11px] uppercase tracking-luxury text-charcoal font-medium mb-2" data-i18n="form_name">Adınız Soyadınız *</label>
+            <input type="text" id="cust-name" required placeholder="z. B. Sophie Lindner / Elif Kaya" class="w-full px-4 py-3.5 rounded-xl border border-gold-500/30 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 focus:outline-none text-sm bg-ivory/60 transition">
+          </div>
+
+          <div>
+            <label class="block text-[11px] uppercase tracking-luxury text-charcoal font-medium mb-2" data-i18n="form_phone">Telefon Numarası *</label>
+            <input type="tel" id="cust-phone" required placeholder="0660 ... veya +43 ..." class="w-full px-4 py-3.5 rounded-xl border border-gold-500/30 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 focus:outline-none text-sm bg-ivory/60 transition">
+          </div>
+
+          <div>
+            <label class="block text-[11px] uppercase tracking-luxury text-charcoal font-medium mb-2" data-i18n="form_email">E-Posta Adresi *</label>
+            <input type="email" id="cust-email" required placeholder="ornek@mail.com" class="w-full px-4 py-3.5 rounded-xl border border-gold-500/30 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 focus:outline-none text-sm bg-ivory/60 transition">
+          </div>
+
+          <div>
+            <label class="block text-[11px] uppercase tracking-luxury text-charcoal font-medium mb-2" data-i18n="form_date">Gelmeyi Düşündüğünüz Gün / Tarih *</label>
+            <input type="date" id="cust-date" required class="w-full px-4 py-3.5 rounded-xl border border-gold-500/30 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 focus:outline-none text-sm bg-ivory/60 transition">
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="block text-[11px] uppercase tracking-luxury text-charcoal font-medium mb-2" data-i18n="form_category">İlgilendiğiniz Model Türü *</label>
+            <select id="cust-category" class="w-full px-4 py-3.5 rounded-xl border border-gold-500/30 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 focus:outline-none text-sm bg-ivory/60 transition">
+              <option value="Brautkleid" data-i18n="opt_braut">Gelinlik Modelleri (Brautmode)</option>
+              <option value="Standesamt" data-i18n="opt_standesamt">Nikah Elbisesi (Standesamt)</option>
+              <option value="Verlobung" data-i18n="opt_verlobung">Nişan Elbisesi (Verlobung)</option>
+              <option value="Henna" data-i18n="opt_henna">Kına & Kaftan (Henna)</option>
+              <option value="Abendmode" data-i18n="opt_abendmode">Abiye Modelleri (Abendmode)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[11px] uppercase tracking-luxury text-charcoal font-medium mb-2" data-i18n="form_notes">Ön Mesajınız</label>
+          <textarea id="cust-message" rows="3" placeholder="Vermek istediğiniz önden herhangi bir mesaj veya detay var ise buraya belirtebilirsiniz..." class="w-full px-4 py-3.5 rounded-xl border border-gold-500/30 focus:border-gold-500 focus:ring-1 focus:ring-gold-500 focus:outline-none text-sm bg-ivory/60 transition"></textarea>
+        </div>
+
+        <div class="text-center pt-4">
+          <button type="submit" class="w-full sm:w-auto px-12 py-4 rounded-full bg-noir text-gold-300 text-xs uppercase tracking-luxury font-semibold hover:bg-gold-500 hover:text-noir transition-all duration-500 shadow-xl hover:shadow-gold-500/30" data-i18n="form_submit">
+            Bilgileri Gönder
+          </button>
+          <p class="text-[11px] text-charcoal/60 mt-3 font-light">
+            Senefeldergasse 28/2, 1100 Wien • Tel: 0660 2335600
+          </p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       10. INSTAGRAM SHOWCASE
+       ============================================== -->
+  <section class="py-20 bg-white border-t border-gold-500/20">
+    <div class="max-w-7xl mx-auto px-6 text-center mb-10">
+      <span class="text-gold-500 uppercase text-[11px] tracking-ultra font-semibold">FOLLOW OUR JOURNEY</span>
+      <h2 class="font-serif text-2xl sm:text-4xl text-noir mt-1">@herahouseofwedding</h2>
+      <a href="https://www.instagram.com/herahouseofwedding?igsh=ODA1NTc5OTg5Nw%3D%3D" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-3 text-xs tracking-wider uppercase text-gold-600 hover:text-noir transition font-medium">
+        <i data-lucide="instagram" class="w-4 h-4"></i> Auf Instagram Folgen
+      </a>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="https://www.instagram.com/herahouseofwedding?igsh=ODA1NTc5OTg5Nw%3D%3D" target="_blank" rel="noopener noreferrer" class="group relative aspect-square rounded-2xl overflow-hidden block">
+        <img src="https://images.unsplash.com/photo-1594552072238-b8a33785b261?auto=format&fit=crop&w=600&q=80" alt="Instagram Hera 1" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-noir/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+          <i data-lucide="instagram" class="w-6 h-6"></i>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/herahouseofwedding?igsh=ODA1NTc5OTg5Nw%3D%3D" target="_blank" rel="noopener noreferrer" class="group relative aspect-square rounded-2xl overflow-hidden block">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Instagram Hera 2" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-noir/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+          <i data-lucide="instagram" class="w-6 h-6"></i>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/herahouseofwedding?igsh=ODA1NTc5OTg5Nw%3D%3D" target="_blank" rel="noopener noreferrer" class="group relative aspect-square rounded-2xl overflow-hidden block">
+        <img src="https://images.unsplash.com/photo-1546804784-896d0dca3805?auto=format&fit=crop&w=600&q=80" alt="Instagram Hera 3" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-noir/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+          <i data-lucide="instagram" class="w-6 h-6"></i>
+        </div>
+      </a>
+      <a href="https://www.instagram.com/herahouseofwedding?igsh=ODA1NTc5OTg5Nw%3D%3D" target="_blank" rel="noopener noreferrer" class="group relative aspect-square rounded-2xl overflow-hidden block">
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80" alt="Instagram Hera 4" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        <div class="absolute inset-0 bg-noir/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+          <i data-lucide="instagram" class="w-6 h-6"></i>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ==============================================
+       11. FOOTER
+       ============================================== -->
+  <footer class="bg-noir text-white pt-24 pb-12 border-t border-gold-500/20 relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        
+        <div class="space-y-4">
+          <span class="font-serif text-3xl tracking-luxury uppercase font-normal text-gold-400">HERA</span>
+          <p class="text-[10px] tracking-ultra uppercase text-white/60">House of Wedding</p>
+          <p class="text-xs text-white/70 font-light leading-relaxed pt-2" data-i18n="hero_slogan">
+            BRIDAL COUTURE: Maßgeschneiderte und Ready-to-Wear Brautmode für Standesamt, Verlobung, Henna und Abendmode. Einzigartige Designs für besonderen Momente.
+          </p>
+          <div class="pt-2">
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Senefeldergasse+28%2F2,+1100+Wien" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gold-500 text-noir text-[10px] tracking-luxury uppercase font-bold hover:bg-gold-400 transition">
+              <i data-lucide="navigation" class="w-3.5 h-3.5"></i> <span data-i18n="btn_maps_full">GOOGLE MAPS ROUTE</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h4 class="font-serif text-xl text-gold-300" data-i18n="footer_nav_title">Navigation</h4>
+          <ul class="space-y-2 text-xs text-white/75 font-light tracking-wider">
+            <li><a href="#kollektionen" class="hover:text-gold-400 transition" data-i18n="tab_bridal">Brautkleider</a></li>
+            <li><a href="#kollektionen" class="hover:text-gold-400 transition" data-i18n="tab_civil">Standesamt Mode</a></li>
+            <li><a href="#kollektionen" class="hover:text-gold-400 transition" data-i18n="tab_henna">Verlobung & Henna</a></li>
+            <li><a href="#kollektionen" class="hover:text-gold-400 transition" data-i18n="tab_evening">Abendmode</a></li>
+            <li><a href="#bereiche" class="hover:text-gold-400 transition" data-i18n="nav_areas">Deneme Alanları</a></li>
+            <li><button onclick="openImpressumModal()" class="hover:text-gold-400 transition">Impressum & Legal</button></li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <h4 class="font-serif text-xl text-gold-300" data-i18n="hours_title">Öffnungszeiten</h4>
+          <ul class="space-y-2 text-xs text-white/75 font-light">
+            <li class="flex justify-between border-b border-white/10 pb-1"><span data-i18n="day_mon">Montag</span> <span>10:00 – 18:00</span></li>
+            <li class="flex justify-between border-b border-white/10 pb-1"><span data-i18n="day_tue">Dienstag</span> <span>10:00 – 18:00</span></li>
+            <li class="flex justify-between border-b border-white/10 pb-1"><span data-i18n="day_wed">Mittwoch</span> <span>10:00 – 18:00</span></li>
+            <li class="flex justify-between border-b border-white/10 pb-1"><span data-i18n="day_thu">Donnerstag</span> <span>10:00 – 18:00</span></li>
+            <li class="flex justify-between border-b border-white/10 pb-1"><span data-i18n="day_fri">Freitag</span> <span>10:00 – 18:00</span></li>
+            <li class="flex justify-between border-b border-white/10 pb-1"><span data-i18n="day_sat">Samstag</span> <span>10:00 – 18:00</span></li>
+            <li class="flex justify-between text-rose-300 pt-1"><span data-i18n="day_sun">Sonntag</span> <span data-i18n="val_closed">Geschlossen</span></li>
+          </ul>
+        </div>
+
+        <div class="space-y-4">
+          <h4 class="font-serif text-xl text-gold-300">Salon Wien</h4>
+          <div class="space-y-2.5 text-xs text-white/75 font-light">
+            <p class="flex items-start gap-2">
+              <i data-lucide="map-pin" class="w-4 h-4 text-gold-400 flex-shrink-0 mt-0.5"></i>
+              <span>Senefeldergasse 28/2<br>1100 Wien, Österreich</span>
+            </p>
+            <p class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>
+              <a href="tel:06602335600" class="hover:text-gold-400 underline">0660 2335600</a>
+            </p>
+            <p class="flex items-center gap-2">
+              <i data-lucide="instagram" class="w-4 h-4 text-gold-400 flex-shrink-0"></i>
+              <a href="https://www.instagram.com/herahouseofwedding?igsh=ODA1NTc5OTg5Nw%3D%3D" target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 underline">@herahouseofwedding</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-[11px] text-white/50 gap-4">
+        <p>© 2026 HERA House of Wedding. Senefeldergasse 28/2, 1100 Wien. Alle Rechte vorbehalten.</p>
+        <div class="flex gap-6">
+          <button onclick="openImpressumModal()" class="hover:text-gold-400 transition underline underline-offset-4">Impressum</button>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Senefeldergasse+28%2F2,+1100+Wien" target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 transition" data-i18n="route_btn">Google Route</a>
+          <a href="https://www.instagram.com/herahouseofwedding?igsh=ODA1NTc5OTg5Nw%3D%3D" target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 transition">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==============================================
+       12. IMPRESSUM MODAL
+       ============================================== -->
+  <div id="impressum-modal" class="fixed inset-0 z-[120] bg-noir/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-white text-onyx max-w-lg w-full rounded-3xl p-8 relative shadow-2xl border border-gold-500 max-h-[90vh] overflow-y-auto">
+      <button onclick="closeImpressumModal()" class="absolute top-6 right-6 p-2 rounded-full hover:bg-ivory text-charcoal transition" aria-label="Kapat">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <span class="text-gold-500 uppercase text-[10px] tracking-ultra font-semibold">RECHTLICHE HINWEISE</span>
+      <h3 class="font-serif text-3xl text-noir font-normal mt-1 mb-6">Impressum</h3>
+
+      <div class="space-y-4 text-xs text-charcoal/80 leading-relaxed font-light">
+        <div class="p-4 bg-ivory rounded-2xl border border-gold-500/20">
+          <p class="font-semibold text-noir text-sm">HERA House of Wedding</p>
+          <p class="mt-1">Inhaberin / Betreiber: Hera House of Wedding</p>
+          <p>Senefeldergasse 28/2</p>
+          <p>1100 Wien, Österreich</p>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-noir uppercase tracking-wider text-[11px]">Kontakt</h4>
+          <p class="mt-1">Telefon: <a href="tel:06602335600" class="text-gold-600 underline font-medium">0660 2335600</a></p>
+          <p>Instagram: <a href="https://www.instagram.com/herahouseofwedding?igsh=ODA1NTc5OTg5Nw%3D%3D" target="_blank" rel="noopener noreferrer" class="text-gold-600 underline font-medium">@herahouseofwedding</a></p>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-noir uppercase tracking-wider text-[11px]">Unternehmensgegenstand</h4>
+          <p class="mt-1">BRIDAL COUTURE: Maßgeschneiderte und Ready-to-Wear Brautmode für Standesamt, Verlobung, Henna und Abendmode. Einzigartige Designs für besonderen Momente.</p>
+        </div>
+
+        <div>
+          <h4 class="font-semibold text-noir uppercase tracking-wider text-[11px]">Öffnungszeiten</h4>
+          <p class="mt-1">Montag bis Samstag: 10:00 – 18:00 Uhr | Sonntag: Geschlossen</p>
+        </div>
+      </div>
+
+      <div class="mt-8 pt-4 border-t border-gold-500/20 flex justify-end">
+        <button onclick="closeImpressumModal()" class="px-7 py-2.5 rounded-full bg-noir text-gold-300 text-xs uppercase tracking-luxury hover:bg-gold-500 hover:text-noir transition">
+          Schließen
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==============================================
+       13. JS MULTI-LANGUAGE SYSTEM (TR / DE / EN) & EMAIL HANDLER
+       ============================================== -->
+  <script>
+    // Initialize icons
+    lucide.createIcons();
+
+    // Multi-Language Dictionary (VIP, Prova, Özel Dikim yok; Geniş Deneme Alanları ve İstenen Rota metni var)
+    const translations = {
+      de: {
+        top_bar: "SENEFELDERGASSE 28/2, 1100 WIEN",
+        slogan_short: "\"Einzigartige Designs für Ihren ganz besonderen Moment\"",
+        hours_short: "MO – SA 10:00 – 18:00",
+        nav_collections: "Kollektionen",
+        nav_salon: "Der Salon",
+        nav_areas: "Anprobe-Bereiche",
+        nav_route: "Route & Standort",
+        nav_visit: "Voranmeldung",
+        route_btn: "ROUTE",
+        hero_badge: "BRIDAL COUTURE • WIEN",
+        hero_title_1: "Die Kunst der",
+        hero_title_2: "Vollendeten Brautmode",
+        hero_slogan: "\"BRIDAL COUTURE: Maßgeschneiderte und Ready-to-Wear Brautmode für Standesamt, Verlobung, Henna und Abendmode. Einzigartige Designs für besonderen Momente.\"",
+        hero_btn_visit: "Ziyaret Öncesi Bilgi Verin",
+        hero_btn_route: "ROUTE (Google Maps)",
+        hero_btn_explore: "Kollektionen Ansehen",
+        salon_tag: "HERA HOUSE OF WEDDING • WIEN",
+        salon_title: "Großzügige und Helle Anprobe-Bereiche",
+        salon_desc: "In unserem Salon in der Senefeldergasse 28/2 stehen Ihnen großzügige und helle Bereiche zur Verfügung, in denen Sie unsere Braut- und Festkleider ganz entspannt anprobieren und betrachten können.",
+        salon_feature_1_title: "01. Großzügige Bereiche",
+        salon_feature_1_desc: "Viel Raum und große Spiegel, um Ihre Wunschkleider gemeinsam mit Ihren Begleitern in aller Ruhe anzuprobieren.",
+        salon_feature_2_title: "02. Vielfältige Kollektionen",
+        salon_feature_2_desc: "Exklusive Ready-to-Wear Kleider für Standesamt, Verlobung, Henna und Hochzeit.",
+        lookbook_tag: "LE LOOKBOOK",
+        lookbook_title: "Die Couture Kollektionen",
+        lookbook_desc: "Standesamt, Verlobung, Henna, Brautmode und Abendmode: Entdecken Sie unsere vielseitigen Modelle im Salon.",
+        tab_all: "Alle",
+        tab_bridal: "Brautkleider",
+        tab_civil: "Standesamt",
+        tab_henna: "Verlobung & Henna",
+        tab_evening: "Abendmode",
+        card_ask: "Zum Anprobieren Besuchen →",
+        card_1_title: "Brautkleid Kollektion",
+        card_1_sub: "Opulente Schleppe & französische Spitze",
+        card_2_title: "Standesamt Kollektion",
+        card_2_sub: "Minimalistischer Seidensatin & Clean Chic",
+        card_3_title: "Verlobung & Henna",
+        card_3_sub: "Glanzvolle Farben & Perlenstickerei",
+        card_4_title: "Abendmode",
+        card_4_sub: "Gala- und Festtagskleider",
+        card_5_title: "Sirene & Balık Kesim",
+        card_5_sub: "Figurbetonte Eleganz",
+        card_6_title: "Prinzessin Ballkleid",
+        card_6_sub: "Voluminöser Tüll & Organza",
+        areas_tag: "SALON AMBIENTE",
+        areas_title: "Großzügige und Helle Anprobe-Bereiche",
+        areas_desc: "In unserem Salon haben wir großzügige Bereiche geschaffen, damit Sie jedes Kleid in bester Atmosphäre anprobieren können.",
+        areas_card_1_tag: "Komfort",
+        areas_card_1_title: "Große Anprobe-Bereiche",
+        areas_card_1_desc: "Mit großen Spiegeln und viel Bewegungsfreiheit können Sie Ihre Lieblingsmodelle unbeschwert ausprobieren.",
+        areas_card_2_tag: "Auswahl",
+        areas_card_2_title: "Ready-to-Wear Vielfalt",
+        areas_card_2_desc: "Entdecken Sie direkt vor Ort zahlreiche Modelle für Standesamt, Verlobung, Henna und Hochzeit.",
+        areas_card_3_tag: "Atmosphäre",
+        areas_card_3_title: "Herzlicher Empfang",
+        areas_card_3_desc: "Ein angenehmes und freundliches Ambiente erwartet Sie und Ihre Begleiter.",
+        route_sec_tag: "SALON & ROUTENPLANER",
+        route_sec_title: "Ihr Weg zu Hera House of Wedding",
+        route_sec_desc: "Unser Salon befindet sich in zentraler Lage im 10. Wiener Gemeindebezirk (Senefeldergasse 28/2). Für eine bequeme Anreise mit dem Auto oder den öffentlichen Verkehrsmitteln teilen wir Ihnen hier unseren genauen Standort.",
+        label_phone: "Telefon:",
+        btn_maps_full: "ROUTE (GOOGLE MAPS)",
+        hours_title: "Öffnungszeiten",
+        day_mon: "Montag",
+        day_tue: "Dienstag",
+        day_wed: "Mittwoch",
+        day_thu: "Donnerstag",
+        day_fri: "Freitag",
+        day_sat: "Samstag",
+        day_sun: "Sonntag",
+        val_closed: "Geschlossen",
+        booking_tag: "VORANMELDUNG / BİLGİLENDİRME",
+        booking_title: "Besuchs-Voranmeldung",
+        booking_desc: "Damit wir uns vor Ihrem Besuch optimal vorbereiten können, füllen Sie bitte dieses kurze Formular aus. Wir freuen uns auf Ihren Besuch!",
+        booking_success_title: "Vielen Dank für Ihre Voranmeldung!",
+        booking_success_desc: "Ihre Benachrichtigung wurde registriert und an abiim66yapti@gmail.com weitergeleitet. Wir bereiten uns auf Ihren Besuch vor!",
+        form_name: "Vollständiger Name *",
+        form_phone: "Telefonnummer / WhatsApp *",
+        form_email: "E-Mail-Adresse *",
+        form_date: "Geplanter Tag / Datum des Besuchs *",
+        form_category: "Gewünschte Modell-Kategorie *",
+        form_notes: "Voranmerkung / Nachricht",
+        form_submit: "Informationen Absenden",
+        opt_braut: "Brautkleider (Brautmode)",
+        opt_standesamt: "Standesamt (Civil Wedding)",
+        opt_verlobung: "Verlobungskleid (Engagement)",
+        opt_henna: "Henna & Kına Kleid",
+        opt_abendmode: "Abendmode (Gala)",
+        footer_nav_title: "Navigation"
+      },
+      tr: {
+        top_bar: "SENEFELDERGASSE 28/2, 1100 WIEN",
+        slogan_short: "\"En özel anlarınız için eşsiz ve büyüleyici tasarımlar\"",
+        hours_short: "PZT – CMT 10:00 – 18:00",
+        nav_collections: "Koleksiyonlar",
+        nav_salon: "Salonumuz",
+        nav_areas: "Deneme Alanları",
+        nav_route: "Yol Tarifi & Konum",
+        nav_visit: "Ziyaret Ön Bilgisi",
+        route_btn: "YOL TARİFİ",
+        hero_badge: "BRIDAL COUTURE • VİYANA",
+        hero_title_1: "Kusursuz Gelinliğin",
+        hero_title_2: "Zarif Sanatı",
+        hero_slogan: "\"BRIDAL COUTURE: Nikah, Nişan, Kına ve Abiyede Maßgeschneiderte und Ready-to-Wear Gelin Modası. En özel anlarınız için eşsiz tasarımlar.\"",
+        hero_btn_visit: "Gelmeden Önce Bilgi Verin",
+        hero_btn_route: "YOL TARİFİ (Google Maps)",
+        hero_btn_explore: "Koleksiyonları İncele",
+        salon_tag: "HERA HOUSE OF WEDDING • VİYANA",
+        salon_title: "Geniş ve Ferah Deneme Alanları",
+        salon_desc: "Viyana Senefeldergasse 28/2 adresindeki salonumuzda, gelin adaylarımızın elbiseleri rahatça deneyebilmeleri ve detayları huzurla inceleyebilmeleri için özel olarak tasarlanmış geniş ve ferah deneme alanlarımız bulunmaktadır. Nikah, nişan, kına ve düğün modellerimizi yakından görüp üzerinizde deneyebilirsiniz.",
+        salon_feature_1_title: "01. Ferah Alanlar",
+        salon_feature_1_desc: "Aileniz ve sevdiklerinizle birlikte elbiseleri rahatça deneyebileceğiniz geniş salon konforu.",
+        salon_feature_2_title: "02. Zengin Çeşitler",
+        salon_feature_2_desc: "Gelinlik, nikah, nişan, kına ve abiyede hazır giyim seçkin tasarımlar.",
+        lookbook_tag: "LE LOOKBOOK",
+        lookbook_title: "Couture Koleksiyonları",
+        lookbook_desc: "Nikah, nişan, kına, gelinlik ve abiye: Salonumuzda deneyebileceğiniz hazır seçkin modellerimizi keşfedin.",
+        tab_all: "Tümü",
+        tab_bridal: "Gelinlikler",
+        tab_civil: "Nikah Elbiseleri",
+        tab_henna: "Nişan & Kına",
+        tab_evening: "Abiye Modelleri",
+        card_ask: "Denemeye Gelmeden Bilgi Ver →",
+        card_1_title: "Gelinlik Koleksiyonu",
+        card_1_sub: "Görkemli kuyruk & Fransız dantel işlemesi",
+        card_2_title: "Nikah Koleksiyonu",
+        card_2_sub: "Minimalist ipek saten & modern şıklık",
+        card_3_title: "Nişan & Kına",
+        card_3_sub: "Göz alıcı renkler & zarif boncuk işlemeleri",
+        card_4_title: "Abiye Modelleri",
+        card_4_sub: "Gala ve davetler için lüks tasarım abiyeler",
+        card_5_title: "Sirene / Balık Kesim",
+        card_5_sub: "Vücudu saran zarif kesim",
+        card_6_title: "Prenses Balo Gelinliği",
+        card_6_sub: "Hacimli tül ve ışıltılı organze katmanlar",
+        areas_tag: "SALON ORTAMI",
+        areas_title: "Geniş ve Ferah Deneme Alanları",
+        areas_desc: "Salonumuzda gelin adaylarımızın elbiseleri en rahat şekilde denemeleri için geniş ve ferah alanlar oluşturduk.",
+        areas_card_1_tag: "Konfor",
+        areas_card_1_title: "Geniş Deneme Alanları",
+        areas_card_1_desc: "Büyük aynalar ve geniş hareket alanına sahip ferah salonumuzda gelinlik ve abiyeleri rahatça üzerinizde görebilirsiniz.",
+        areas_card_2_tag: "Çeşitlilik",
+        areas_card_2_title: "Hazır Koleksiyonlar",
+        areas_card_2_desc: "Standesamt, kına, nişan ve düğün modellerimizi salonumuzda yakından inceleyip dilediğiniz modelleri deneyebilirsiniz.",
+        areas_card_3_tag: "Misafirperverlik",
+        areas_card_3_title: "Güler Yüzlü Hizmet",
+        areas_card_3_desc: "Aileniz veya arkadaşlarınızla birlikte keyifle vakit geçirebileceğiniz samimi ve huzurlu bir ortam sizleri bekliyor.",
+        route_sec_tag: "SALON & YOL TARİFİ",
+        route_sec_title: "Hera House of Wedding'e Nasıl Gidilir?",
+        route_sec_desc: "Salonumuz Viyana 10. bölgede (Senefeldergasse 28/2) merkezi bir konumdadır. Arabayla veya toplu taşımayla kolayca ulaşmak için sizlere konumumuzu paylaşıyoruz.",
+        label_phone: "Telefon:",
+        btn_maps_full: "YOL TARİFİ (GOOGLE MAPS)",
+        hours_title: "Çalışma Saatleri",
+        day_mon: "Pazartesi",
+        day_tue: "Salı",
+        day_wed: "Çarşamba",
+        day_thu: "Perşembe",
+        day_fri: "Cuma",
+        day_sat: "Cumartesi",
+        day_sun: "Pazar",
+        val_closed: "Kapalı",
+        booking_tag: "VORANMELDUNG / BİLGİLENDİRME",
+        booking_title: "Ziyaret Ön Bilgilendirmesi",
+        booking_desc: "Siz gelmeden önce kendimizi en iyi şekilde hazırlayabilmemiz için lütfen formu doldurunuz. Denemek istediğiniz modelleri ve geleceğiniz günü önden bilmemiz bize yardımcı olacaktır.",
+        booking_success_title: "Bilgileriniz Alındı!",
+        booking_success_desc: "Ziyaret ön bildiriminiz başarıyla alındı ve abiim66yapti@gmail.com adresine iletildi. Sizi salonumuzda ağırlamak için hazırlanıyoruz.",
+        form_name: "Adınız Soyadınız *",
+        form_phone: "Telefon Numarası *",
+        form_email: "E-Posta Adresi *",
+        form_date: "Gelmeyi Düşündüğünüz Gün / Tarih *",
+        form_category: "İlgilendiğiniz Model Türü *",
+        form_notes: "Ön Mesajınız",
+        form_submit: "Bilgileri Gönder",
+        opt_braut: "Gelinlik Modelleri (Brautmode)",
+        opt_standesamt: "Nikah Elbisesi (Standesamt)",
+        opt_verlobung: "Nişan Elbisesi (Verlobung)",
+        opt_henna: "Kına & Kaftan (Henna)",
+        opt_abendmode: "Abiye Modelleri (Abendmode)",
+        footer_nav_title: "Menü"
+      },
+      en: {
+        top_bar: "SENEFELDERGASSE 28/2, 1100 VIENNA",
+        slogan_short: "\"Unique handcrafted designs for your most cherished moments\"",
+        hours_short: "MON – SAT 10:00 – 18:00",
+        nav_collections: "Collections",
+        nav_salon: "The Salon",
+        nav_areas: "Fitting Areas",
+        nav_route: "Directions & Location",
+        nav_visit: "Advance Notice",
+        route_btn: "DIRECTIONS",
+        hero_badge: "BRIDAL COUTURE • VIENNA",
+        hero_title_1: "The Art of",
+        hero_title_2: "Exquisite Bridal Fashion",
+        hero_slogan: "\"BRIDAL COUTURE: Ready-to-Wear gowns for civil weddings, engagements, henna and evening galas. Distinctive designs for life's most unforgettable moments.\"",
+        hero_btn_visit: "Notify Before Visiting",
+        hero_btn_route: "DIRECTIONS (Google Maps)",
+        hero_btn_explore: "View Collections",
+        salon_tag: "HERA HOUSE OF WEDDING • VIENNA",
+        salon_title: "Spacious and Bright Trying-on Areas",
+        salon_desc: "At our salon located at Senefeldergasse 28/2, we offer spacious and bright fitting areas designed for brides and guests to try on gowns in comfort and peace.",
+        salon_feature_1_title: "01. Spacious Spaces",
+        salon_feature_1_desc: "Generous fitting rooms and large mirrors to comfortably try on dresses with your family.",
+        salon_feature_2_title: "02. Curated Collections",
+        salon_feature_2_desc: "Exquisite ready-to-wear gowns for civil weddings, engagements, henna and weddings.",
+        lookbook_tag: "LE LOOKBOOK",
+        lookbook_title: "The Couture Collections",
+        lookbook_desc: "Explore civil wedding gowns, henna, bridal and evening gowns available in our salon.",
+        tab_all: "All",
+        tab_bridal: "Bridal Gowns",
+        tab_civil: "Civil Wedding",
+        tab_henna: "Engagement & Henna",
+        tab_evening: "Evening Gowns",
+        card_ask: "Notify Before Trying on →",
+        card_1_title: "Bridal Gown Collection",
+        card_1_sub: "Opulent train & handcrafted French lace",
+        card_2_title: "Civil Wedding Gown",
+        card_2_sub: "Minimalist silk satin & clean chic",
+        card_3_title: "Engagement & Henna",
+        card_3_sub: "Vibrant hues & crystal embroidery",
+        card_4_title: "Evening Gowns",
+        card_4_sub: "Prestigious gala gowns",
+        card_5_title: "Mermaid Silhouette",
+        card_5_sub: "Graceful form-fitting line",
+        card_6_title: "Princess Ballgown",
+        card_6_sub: "Voluminous tulle and organza",
+        areas_tag: "SALON ATMOSPHERE",
+        areas_title: "Spacious and Bright Fitting Areas",
+        areas_desc: "Our boutique features spacious areas so you can try on every gown in optimal comfort.",
+        areas_card_1_tag: "Comfort",
+        areas_card_1_title: "Large Fitting Spaces",
+        areas_card_1_desc: "Spacious areas with large mirrors to view your favorite gowns with ease.",
+        areas_card_2_tag: "Variety",
+        areas_card_2_title: "Ready-to-Wear",
+        areas_card_2_desc: "Discover a wide range of dresses ready to be tried on in our Vienna salon.",
+        areas_card_3_tag: "Warmth",
+        areas_card_3_title: "Friendly Welcome",
+        areas_card_3_desc: "A warm and peaceful setting awaits you and your companions.",
+        route_sec_tag: "SALON & DIRECTIONS",
+        route_sec_title: "Your Way to Hera House of Wedding",
+        route_sec_desc: "Our salon is centrally located in Vienna's 10th district (Senefeldergasse 28/2). To easily reach us by car or public transport, we share our precise location with you.",
+        label_phone: "Phone:",
+        btn_maps_full: "DIRECTIONS (GOOGLE MAPS)",
+        hours_title: "Opening Hours",
+        day_mon: "Monday",
+        day_tue: "Tuesday",
+        day_wed: "Wednesday",
+        day_thu: "Thursday",
+        day_fri: "Friday",
+        day_sat: "Saturday",
+        day_sun: "Sunday",
+        val_closed: "Closed",
+        booking_tag: "ADVANCE NOTIFICATION",
+        booking_title: "Advance Visit Notification",
+        booking_desc: "Please fill out this form in advance so we can prepare ourselves and the dresses before you arrive.",
+        booking_success_title: "Thank You for the Notice!",
+        booking_success_desc: "Your visit notification has been sent to abiim66yapti@gmail.com. We look forward to welcoming you at Senefeldergasse 28/2!",
+        form_name: "Full Name *",
+        form_phone: "Phone Number *",
+        form_email: "Email Address *",
+        form_date: "Planned Day / Date of Visit *",
+        form_category: "Desired Category *",
+        form_notes: "Prior Message / Details",
+        form_submit: "Send Information",
+        opt_braut: "Bridal Gowns (Brautmode)",
+        opt_standesamt: "Civil Wedding Gown (Standesamt)",
+        opt_verlobung: "Engagement Gown (Verlobung)",
+        opt_henna: "Henna & Kına Gown",
+        opt_abendmode: "Evening Gown (Abendmode)",
+        footer_nav_title: "Navigation"
+      }
+    };
+
+    let currentLang = 'de';
+
+    function setLanguage(lang) {
+      if (!translations[lang]) return;
+      currentLang = lang;
+
+      // Update button styles
+      ['de', 'tr', 'en'].forEach(l => {
+        const btn = document.getElementById(`lang-btn-${l}`);
+        if (btn) {
+          if (l === lang) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        }
+      });
+
+      // Update elements with data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      // Update placeholders
+      const msgArea = document.getElementById('cust-message');
+      if (msgArea) {
+        if (lang === 'tr') {
+          msgArea.placeholder = "Vermek istediğiniz önden herhangi bir mesaj veya detay var ise buraya belirtebilirsiniz...";
+        } else if (lang === 'de') {
+          msgArea.placeholder = "Wenn Sie uns vorab eine Nachricht oder Details mitteilen möchten, können Sie diese hier angeben...";
+        } else {
+          msgArea.placeholder = "If you have any prior message or detail to share with us, feel free to write it here...";
+        }
+      }
+
+      document.documentElement.lang = lang;
+    }
+
+    // Skip Intro
+    function skipIntro(preferredLang) {
+      if (preferredLang) {
+        setLanguage(preferredLang);
+      }
+      const intro = document.getElementById('intro-screen');
+      const video = document.getElementById('intro-video');
+      intro.classList.add('intro-exit');
+      
+      setTimeout(() => {
+        if (video) video.pause();
+        intro.style.display = 'none';
+      }, 1100);
+    }
+
+    // ESC to skip
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') skipIntro('de');
+    });
+
+    // Mobile nav toggle
+    function toggleMobileNav() {
+      const panel = document.getElementById('mobile-nav-panel');
+      panel.classList.toggle('hidden');
+    }
+
+    // Gallery Filtering
+    function filterGallery(category, button) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-noir', 'text-gold-300');
+        btn.classList.add('text-onyx');
+      });
+      button.classList.add('bg-noir', 'text-gold-300');
+      button.classList.remove('text-onyx');
+
+      const items = document.querySelectorAll('.gallery-item');
+      items.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Impressum Modal
+    function openImpressumModal() {
+      const modal = document.getElementById('impressum-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeImpressumModal() {
+      const modal = document.getElementById('impressum-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Visit notification submission (E-Mail to abiim66yapti@gmail.com)
+    function submitVisitNotification(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('cust-name').value;
+      const phone = document.getElementById('cust-phone').value;
+      const email = document.getElementById('cust-email').value;
+      const date = document.getElementById('cust-date').value;
+      const category = document.getElementById('cust-category').value;
+      const message = document.getElementById('cust-message').value;
+
+      const subject = encodeURIComponent(`Hera House of Wedding - Yeni Deneme Ziyareti: ${name}`);
+      const body = encodeURIComponent(
+        `Yeni Deneme Ziyareti Ön Bildirimi:\n\n` +
+        `Ad Soyad: ${name}\n` +
+        `Telefon: ${phone}\n` +
+        `E-Posta: ${email}\n` +
+        `Düşünülen Tarih: ${date}\n` +
+        `İlgilenilen Kategori: ${category}\n` +
+        `Ön Mesaj / Not: ${message || 'Belirtilmedi'}\n\n` +
+        `Gönderici E-Posta: samiyusufyil@gmail.com\n` +
+        `Alıcı: abiim66yapti@gmail.com\n` +
+        `Hera House of Wedding - Senefeldergasse 28/2, 1100 Wien`
+      );
+
+      // Trigger mailto intent with predefined sender reference and recipient
+      const mailtoLink = `mailto:abiim66yapti@gmail.com?cc=samiyusufyil@gmail.com&subject=${subject}&body=${body}`;
+      
+      // Open in background or trigger mail client
+      const tempAnchor = document.createElement('a');
+      tempAnchor.href = mailtoLink;
+      tempAnchor.target = '_blank';
+      tempAnchor.click();
+
+      // Show stylish confirmation toast
+      const toast = document.getElementById('booking-confirmation');
+      toast.classList.remove('hidden');
+      toast.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      event.target.reset();
+    }
+
+    // Navbar scroll shadow
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('main-nav');
+      if (window.scrollY > 40) {
+        nav.classList.add('shadow-lg');
+      } else {
+        nav.classList.remove('shadow-lg');
+      }
+    });
+
+    // Default Language Setup on Load
+    window.addEventListener('DOMContentLoaded', () => {
+      setLanguage('de');
+    });
+  </script>
+</body>
+</html>
